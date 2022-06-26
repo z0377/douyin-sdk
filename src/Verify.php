@@ -1,6 +1,6 @@
 <?php
 
-namespace   Oneinit; //要与composer.json   "Oneinit\\":"src/"  对应
+namespace  Douyin; //要与composer.json   "Oneinit\\":"src/"  对应
 
 /**
  * 校验工具类，如验证ip、手机、邮箱等等
