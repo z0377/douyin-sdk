@@ -1,0 +1,22 @@
+{
+    "name": "louis/douyin-sdk",
+    "description": "douyin sdk for php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Louis",
+            "email": "louiswu7@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flower\\Rose\\": "src/Flower/Rose",
+            "Flower\\Lily\\": "src/Flower/Lily"
+        }
+    }
+}
