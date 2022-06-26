@@ -1,22 +1,16 @@
 {
-    "name": "z0377/douyin-sdk",
-    "description": "douyin sdk for php",
+    "name": "wpp/douyin-sdk",
     "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "z0377",
-            "email": "louiswu7@163.com"
-        }
-    ],
     "minimum-stability": "dev",
-    "require": {
-        "php": ">=7.0"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
-            "Flower\\Rose\\": "src/Flower/Rose",
-            "Flower\\Lily\\": "src/Flower/Lily"
+            "Oneinit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Oneinit\\": "src/"
         }
     }
 }
