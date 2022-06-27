@@ -1,11 +1,17 @@
 <?php
 namespace Douyin\Oauth;
 
-use Douyin\Base\Base;
+use Douyin\Douyin;
 
-class Oauth extends Base
+class Oauth extends Douyin
 {
-    const ACCESS_TOKEN_URL = "https://open.douyin.com/oauth/access_token/";
+    const ACCESS_TOKEN_URL = "oauth/access_token/";
+
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * 抖音获取授权码
      *
@@ -13,28 +19,27 @@ class Oauth extends Base
      * @param string $redirect_uri 授权成功后的回调地址
      * @return string
      */
-    public static function getConnectUrl($scope,$redirect_uri)
+    public function getConnectUrl($param)
     {
-        $url = "https://open.douyin.com/platform/oauth/connect/?client_key=".self::$config['key']."&response_type=code&scope=".$scope."&redirect_uri=".$redirect_uri;
+        $url = $this->config['base_url']."platform/oauth/connect/?client_key=".$this->config['key']."&response_type=code&scope=".$param['scope']."&redirect_uri=".$param['redirect_uri'];
         return $url;
     }
 
     /**
      * 获取access
      *
-     * @param string $code 授权码
      * @return string
      */
-    public static function getAccessToken($code)
+    public function getAccessToken($data)
     {
         $param = [
-            'code' => $code,
-            'client_secret' => self::$config['secret'],
+            'code' => $data['code'],
+            'client_secret' => $this->config['secret'],
             'grant_type' => 'authorization_code',
-            'client_key' => self::$config['key']
+            'client_key' => $this->config['key']
         ];
         $client = new \GuzzleHttp\Client();
-        $result = $client->request('POST',self::ACCESS_TOKEN_URL,['form_params' => $param]);
+        $result = $client->request('POST',$this->config['base_url'].self::ACCESS_TOKEN_URL,['form_params' => $param]);
         $res = $result->getBody()->getContents();
         return json_decode($res,true);
     }
