@@ -2,9 +2,6 @@
     "name": "wpp/douyin-sdk",
     "type": "library",
     "minimum-stability": "dev",
-    "require": {
-        "guzzlehttp/guzzle": "7.4.x-dev"
-    },
     "autoload": {
         "psr-4": {
             "Douyin\\": "src/"
@@ -15,5 +12,8 @@
             "Douyin\\": "src/"
         }
     },
-    "license": "MIT"
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "7.0"
+    }
 }
