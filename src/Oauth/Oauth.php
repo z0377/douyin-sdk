@@ -6,6 +6,7 @@ use Douyin\Douyin;
 class Oauth extends Douyin
 {
     const ACCESS_TOKEN_URL = "oauth/access_token/";
+    const CLIENT_TOKEN_URL = "oauth/client_token/";
 
     public function __construct($config)
     {
@@ -40,6 +41,24 @@ class Oauth extends Douyin
         ];
         $client = new \GuzzleHttp\Client();
         $result = $client->request('POST',$this->config['base_url'].self::ACCESS_TOKEN_URL,['form_params' => $param]);
+        $res = $result->getBody()->getContents();
+        return json_decode($res,true);
+    }
+
+    /**
+     * 获取client_token
+     *
+     * @return string
+     */
+    public function getClientToken()
+    {
+        $param = [
+            'client_secret' => $this->config['secret'],
+            'grant_type' => 'client_credential',
+            'client_key' => $this->config['key']
+        ];
+        $client = new \GuzzleHttp\Client();
+        $result = $client->request('POST',$this->config['base_url'].self::CLIENT_TOKEN_URL,['form_params' => $param]);
         $res = $result->getBody()->getContents();
         return json_decode($res,true);
     }
